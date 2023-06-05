@@ -47,9 +47,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run build
-        run: pnpm build
-
       - name: Publish package
         run: pnpm publish --no-git-checks
         env:
