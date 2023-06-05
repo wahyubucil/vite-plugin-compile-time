@@ -1,23 +1,17 @@
-name: CI
+name: Node.js Package
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  release:
+    types: [created]
 
 jobs:
-  test:
-    if: "!contains(github.event.head_commit.message, 'ci skip')"
+  publish-gpr:
+    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-        node-version: [18.x]
+    permissions:
+      packages: write
+      contents: read
 
-    runs-on: ${{ matrix.os }}
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
@@ -26,7 +20,8 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18.x
+          registry-url: https://npm.pkg.github.com/
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -52,6 +47,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # Runs a set of commands using the runners shell
-      - name: Run test
-        run: pnpm test
+      - name: Run build
+        run: pnpm build
+
+      - name: Publish package
+        run: pnpm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
