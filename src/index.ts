@@ -2,7 +2,6 @@ import path from "node:path"
 import { Plugin } from "vite"
 import MagicString from "magic-string"
 import { bundleRequire } from "bundle-require"
-import * as devalue from "devalue"
 
 type MaybePromise<T> = T | Promise<T>
 
@@ -62,6 +61,9 @@ const createPlugins = (): Plugin[] => {
         ]
 
         if (m.length === 0) return
+
+        // To prevent ERR_REQUIRE_ESM
+        const devalue = await import("devalue")
 
         const s = new MagicString(code)
         const dir = path.dirname(id)
