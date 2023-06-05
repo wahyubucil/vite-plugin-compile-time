@@ -4,19 +4,21 @@
 
 # vite-plugin-compile-time
 
-[![npm version](https://badgen.net/npm/v/vite-plugin-compile-time?v=2)](https://npm.im/vite-plugin-compile-time) [![npm downloads](https://badgen.net/npm/dm/vite-plugin-compile-time?v=2)](https://npm.im/vite-plugin-compile-time)
+[![npm version](https://badgen.net/npm/v/@wahyubucil/vite-plugin-compile-time?v=2)](https://npm.im/@wahyubucil/vite-plugin-compile-time) [![npm downloads](https://badgen.net/npm/dm/@wahyubucil/vite-plugin-compile-time?v=2)](https://npm.im/@wahyubucil/vite-plugin-compile-time)
+
+This is a forked version with updated dependencies. If the [original package](https://github.com/egoist/@wahyubucil/vite-plugin-compile-time) is updated, use it!
 
 Use this plugin to generate code at compile time or get data at compile time in your Vite projects.
 
 ## Install
 
 ```bash
-npm i vite-plugin-compile-time -D
+npm i @wahyubucil/vite-plugin-compile-time -D
 ```
 
 ```ts
 import { defineConfig } from "vite"
-import compileTime from "vite-plugin-compile-time"
+import compileTime from "@wahyubucil/vite-plugin-compile-time"
 
 export default defineConfig({
   plugins: [compileTime()],
@@ -75,7 +77,7 @@ You should return a default export with object containing `code` or `data` prope
 import {
   CompileTimeFunctionArgs,
   CompileTimeFunctionResult,
-} from "vite-plugin-compile-time"
+} from "@wahyubucil/vite-plugin-compile-time"
 
 export default async (
   args: CompileTimeFunctionArgs,
@@ -90,7 +92,7 @@ export default async (
 }
 ```
 
-See the type docs on [paka.dev](https://paka.dev/npm/vite-plugin-compile-time#module-index-export-CompileTimeFunction).
+See the type docs on [paka.dev](https://paka.dev/npm/@wahyubucil/vite-plugin-compile-time#module-index-export-CompileTimeFunction).
 
 ## Sponsors
 
