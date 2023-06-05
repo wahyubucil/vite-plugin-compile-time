@@ -2,6 +2,7 @@
   "name": "vite-plugin-compile-time",
   "version": "0.1.2",
   "description": "Do some compile time work in your Vite project",
+  "type": "module",
   "publishConfig": {
     "access": "public"
   },
@@ -18,27 +19,27 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build-fast": "tsup src/index.ts --format cjs,esm",
-    "build": "pnpm run build-fast -- --dts-resolve",
+    "build": "pnpm run build-fast --dts-resolve",
     "test": "vitest run",
     "prepublishOnly": "pnpm run build"
   },
   "license": "MIT",
   "devDependencies": {
     "@egoist/prettier-config": "1.0.0",
-    "prettier": "2.5.1",
-    "sucrase": "3.20.3",
-    "tsup": "5.11.9",
-    "typescript": "4.5.4",
-    "vite": "2.7.9",
-    "vitest": "0.0.122"
+    "prettier": "2.8.8",
+    "sucrase": "3.32.0",
+    "tsup": "6.7.0",
+    "typescript": "5.1.3",
+    "vite": "4.3.9",
+    "vitest": "0.31.4"
   },
   "dependencies": {
-    "bundle-require": "^2.2.0",
-    "devalue": "^2.0.1",
-    "esbuild": "^0.14.9",
-    "magic-string": "^0.25.7"
+    "bundle-require": "^4.0.1",
+    "devalue": "^4.3.2",
+    "esbuild": "^0.17.19",
+    "magic-string": "^0.30.0"
   },
   "peerDependencies": {
-    "vite": ">=2"
+    "vite": ">=4"
   }
 }

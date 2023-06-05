@@ -1,8 +1,8 @@
-import path from "path"
+import path from "node:path"
 import { Plugin } from "vite"
 import MagicString from "magic-string"
 import { bundleRequire } from "bundle-require"
-import devalue from "devalue"
+import * as devalue from "devalue"
 
 type MaybePromise<T> = T | Promise<T>
 
@@ -81,7 +81,7 @@ const createPlugins = (): Plugin[] => {
               ...dependencies.map((p) => path.resolve(p)),
             ]
             if (cache.data) {
-              cache.data = devalue(cache.data)
+              cache.data = devalue.uneval(cache.data)
             }
             loadCache.set(cacheKey, cache)
           }
