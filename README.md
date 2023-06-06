@@ -6,9 +6,11 @@
 
 [![npm version](https://badgen.net/npm/v/@wahyubucil/vite-plugin-compile-time?v=2)](https://npm.im/@wahyubucil/vite-plugin-compile-time) [![npm downloads](https://badgen.net/npm/dm/@wahyubucil/vite-plugin-compile-time?v=2)](https://npm.im/@wahyubucil/vite-plugin-compile-time)
 
+Use this plugin to generate code at compile time or get data at compile time in your Vite projects.
+
 This is a forked version with updated dependencies. If the [original package](https://github.com/egoist/@wahyubucil/vite-plugin-compile-time) is updated, use it!
 
-Use this plugin to generate code at compile time or get data at compile time in your Vite projects.
+This package is ESM-only. Read more on how to use [Pure ESM Package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
 
 ## Install
 

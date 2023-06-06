@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "ESNext",
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
@@ -9,6 +9,7 @@
     "noUnusedLocals": true,
     "noImplicitAny": true,
     "allowJs": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "noEmit": true
   }
 }
