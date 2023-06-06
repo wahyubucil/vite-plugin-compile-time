@@ -1,5 +1,5 @@
 import path from "node:path"
-import { Plugin } from "vite"
+import { Plugin, ResolvedConfig } from "vite"
 import MagicString from "magic-string"
 import { bundleRequire } from "bundle-require"
 import * as devalue from "devalue"
@@ -7,8 +7,8 @@ import * as devalue from "devalue"
 type MaybePromise<T> = T | Promise<T>
 
 export type CompileTimeFunctionArgs = {
-  /** Root directory of the Vite project */
-  root: string
+  /** Vite resolved config */
+  viteConfig: ResolvedConfig
 }
 
 export type CompileTimeFunctionResult = MaybePromise<{
@@ -26,18 +26,21 @@ export type CompileTimeFunction = (
 
 const createPlugins = (): Plugin[] => {
   let useSourceMap = false
+
   const loadCache: Map<
     string,
     { data?: any; code?: string; watchFiles?: string[] }
   > = new Map()
-  let root = process.cwd()
+
+  let resolvedConfig: ResolvedConfig
+
   return [
     {
       name: "compile-time",
       enforce: "pre",
       configResolved(config) {
         useSourceMap = !!config.build.sourcemap
-        root = config.root
+        resolvedConfig = config
       },
       configureServer(server) {
         server.watcher.on("all", (_, id) => {
@@ -76,7 +79,10 @@ const createPlugins = (): Plugin[] => {
             const { mod, dependencies } = await bundleRequire({ filepath })
             const defaultExport: CompileTimeFunction | undefined =
               mod.default || mod
-            cache = (defaultExport && (await defaultExport({ root }))) || {}
+            cache =
+              (defaultExport &&
+                (await defaultExport({ viteConfig: resolvedConfig }))) ||
+              {}
             cache.watchFiles = [
               filepath,
               ...(cache.watchFiles || []),
