@@ -1,6 +1,6 @@
 {
   "name": "@wahyubucil/vite-plugin-compile-time",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "type": "module",
   "description": "Do some compile time work in your Vite project",
   "publishConfig": {
