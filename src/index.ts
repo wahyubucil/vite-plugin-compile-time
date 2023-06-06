@@ -11,18 +11,18 @@ export type CompileTimeFunctionArgs = {
   viteConfig: ResolvedConfig
 }
 
-export type CompileTimeFunctionResult = MaybePromise<{
+export type CompileTimeFunctionResult<TData = unknown> = MaybePromise<{
   /** Get data at compile time */
-  data?: any
+  data?: TData
   /** Generate code at compile time */
   code?: string
   /** Trigger rebuild when watched files change */
   watchFiles?: string[]
 }>
 
-export type CompileTimeFunction = (
+export type CompileTimeFunction<TData = unknown> = (
   args: CompileTimeFunctionArgs,
-) => CompileTimeFunctionResult
+) => CompileTimeFunctionResult<TData>
 
 const createPlugins = (): Plugin[] => {
   let useSourceMap = false
