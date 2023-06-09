@@ -13,3 +13,13 @@ test("compile time code", () => {
   import.meta.compileTime("./fixture-code.ts")
   assert.equal(count, 1)
 })
+
+test("multiline syntax", () => {
+  const res = import.meta.compileTime<unknown>(
+    "./fixture-data.ts"
+  )
+  assert.deepEqual(res, {
+    a: "a",
+    num: 3,
+  })
+})
